@@ -59,7 +59,7 @@ wn.exitonclick()
 
 #%%
 wn = turtle.Screen()
-elan = turtle.Turtle()
+elan = turtle.Turtle() #module turlte, class Turtle, instance elan
 distance=0
 ii = 1
 for _ in range(10):
@@ -73,3 +73,15 @@ for _ in range(10):
     distance = distance + 10
     
 wn.exitonclick()  
+
+#%% Additional methods of the class Turtle from the module Turtle
+
+elan.up() # move pen up, after that turtle moves but doesn't draw/ method of elan instance (of the class turtle.Turtle() )
+elan.down() # move pen down, after that turtle draws/ method of elan instance (of the class turtle.Turtle() )
+elan.shape("turtle") # change turtle's shapeshape / method of elan instance (of the class turtle.Turtle() )
+elan.speed(10) # set turtle's animation speed from 1 to 10. o means no animation just plot
+elan.stamp() # turtle leaves a stamp from each path
+
+
+
+
