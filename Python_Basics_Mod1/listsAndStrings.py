@@ -116,7 +116,8 @@ print("-----------------------------")
 
 
 #%% Count and index
-# Look here for an overview of list methods: https://www.w3schools.com/python/python_ref_list.asp
+# Look here for an overview of list class methods: https://www.w3schools.com/python/python_ref_list.asp
+# Look here for an overview of string class methods: https://www.w3schools.com/python/python_ref_string.asp
 print('Count is a method of strings and lists that counts the occurence of a character or set of characters appear in a string/list')
 SS = "This is my test string that I have created. Ha ha ha!"
 SSha = SS.count("ha") 
@@ -138,6 +139,25 @@ print('my list is: '+ str(L2) + ' the first index of 6 is L2.index(6): ' + str(L
 print('If the character/string we are looking does not exist index throws errror!')
 print("-----------------------------")
 
-# 
-        
+#%% Split and join strings
+
+print ('The split method of strings breaks a string to smaller strings based on space')
+Ssplit = 'I have this  string    that I want to splitin words'
+Sspl= Ssplit.split()
+print('My string is:<' +Ssplit +'> and S.split() gives: ' + str(Sspl) )       
+Sspl2= Ssplit.split('i')
+print('If the input of split is not empty I can define a special delimite. E.g: S.split("i"): ' + str(Sspl2))
+print('The deliiter DOES NOT appear in the result!')
+print("-----------------------------")
+
+print ('The join method of strings concatenates strings based on specific glue character')
+wds = ["red", "blue", "green"]
+glue = ';'
+s = glue.join(wds)
+#print(s)
+Sjoined = " ".join(wds)
+print( 'My list of strings is:' + str(wds))
+print ('I can join my list by defining the connection character " ".join(wds): '+Sjoined)
+print('Or using any other character like "***".join(wds): ' +  "***".join(wds))
+#print("".join(wds))
 
