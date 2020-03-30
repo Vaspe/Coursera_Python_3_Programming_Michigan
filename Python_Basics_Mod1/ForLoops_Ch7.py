@@ -63,3 +63,21 @@ for p in prefixes:
 input_str ="Vasilis"#input ("Enter some text")
 
 print ( input_str[::-1])
+
+#%% Write a program that uses a for loop to print
+months = ["January","February","March","April","May","June","July","August","Seprember","Octiber","November","December"]
+
+for imonth in months:
+    print("One of the months of the year is " + imonth)
+    
+#%%Assume you have a list of numbers 12, 10, 32, 3, 66, 17, 42, 99, 20
+#Write a loop that prints each of the numbers on a new line.
+#Write a loop that prints each number and its square on a new line.
+    
+numbers = [2, 10, 32, 3, 66, 17, 42, 99, 20] 
+for inum in numbers:
+    print(str(inum))
+    
+for inum in numbers:
+    print(str(inum)," ", str(inum*inum))
+    print(str(inum))    
