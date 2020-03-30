@@ -7,6 +7,10 @@ Created on Tue Mar 31 00:20:09 2020
 
 import turtle
 
+##Write a program that asks the user for the number of sides, the length of the side, 
+#the color, and the fill color of a regular polygon. The program should draw the polygon 
+#and then fill it in.
+
 in_sides = "4" #input("define number of sides")
 in_length = "100" #input("define length of each side (same for all)")
 in_color = "blue"  #input("define color of the lines (same for all)")
@@ -17,8 +21,10 @@ elan = turtle.Turtle()
 elan.pencolor(in_color) 
 elan.fillcolor(in_fill)
 
+elan.begin_fill()
 for i in range(int(in_sides)):
     elan.forward(float(in_length))
     elan.left(360/int(in_sides))
+elan.end_fill()
 
 #wn.exitonclick()  
