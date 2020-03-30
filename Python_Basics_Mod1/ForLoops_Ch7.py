@@ -35,7 +35,7 @@ number=list(range(0,53,1))
 
 #%%
 str1 = "I like nonsense, it wakes up the brain cells. Fantasy is a necessary ingredient in living."
-
+numbs = 0
 for i in str1:
     numbs=numbs+1
     
@@ -47,3 +47,19 @@ numbers = list(range(41))
 sum1=0
 for i in numbers:
     sum1=sum1+i
+    
+#%% In Robert McCloskey’s book Make Way for Ducklings, the names of the ducklings are 
+#Jack, Kack, Lack, Mack, Nack, Ouack, Pack, and Quack. This loop tries to output these 
+#names in order.
+#Of course, that’s not quite right because Ouack and Quack are misspelled. Can you fix it?
+prefixes = ["J", "K", "L", "M", "N", "Ou", "P", "Qu"]
+suffix = "ack"
+
+for p in prefixes:
+    print(p + suffix)    
+    
+ #%% Get the user to enter some text and print it out in reverse order
+ 
+input_str ="Vasilis"#input ("Enter some text")
+
+print ( input_str[::-1])
