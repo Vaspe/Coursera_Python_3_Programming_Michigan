@@ -200,3 +200,9 @@ origlist = origlist + ["cow"]
 print("origlist:", origlist)
 print("aliaslist:", aliaslist)
 print("-------------------------------")
+
+winners = ['Alice Munro', 'Alvin E. Roth', 'Kazuo Ishiguro', 'Malala Yousafzai', 'Rainer Weiss', 'Youyou Tu']
+print(str(winners))
+winners.reverse()
+z_winners =winners
+print(str(z_winners))
