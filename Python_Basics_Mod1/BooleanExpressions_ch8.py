@@ -6,6 +6,7 @@ Created on Wed Apr  1 16:39:24 2020
 """
 
 # nice overview here: https://www.w3schools.com/python/python_operators.asp
+# operator precedence can be found here https://docs.python.org/3/reference/expressions.html#operator-precedence
 
 print(True)
 print(type(True))
