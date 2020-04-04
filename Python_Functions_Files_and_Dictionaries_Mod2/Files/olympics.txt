@@ -58,4 +58,3 @@ Paavo Johannes Aaltonen,M,32,Finland,Gymnastics,NA
 Paavo Johannes Aaltonen,M,32,Finland,Gymnastics,NA
 Timo Antero Aaltonen,M,31,Finland,Athletics,NA
 Win Valdemar Aaltonen,M,54,Finland,Art Competitions,NA
-You have attempted 2 of 1 activities on this page
