@@ -60,10 +60,49 @@ print("Using the command len gives the amount of key-value pairs in a dictionary
 print("-------------------------------------------------------")
 #%% main methods
 
-print("---------------------MAIN METHODS----------------------------------")
+print("----------------MAIN METHODS--- keys,values,items,in,not in, get, update------------------------")
 
 inventory = {'apples': 430, 'bananas': 312, 'oranges': 525, 'pears': 217}
 
-key_list = list(inventory.keys()) # the method its self does not produce a list!!!!!
+key_list = list(inventory.keys()) # the method keys() its self does not produce a list!!!!!
+print ("in order to see all keys in a dicitonary I need to do list(inventory.keys()): which gives"+ str(key_list))
 
+# using a loop:
+for k in inventory: # or equally: for k in inventory.keys"
+    print("Key is "+ k)
 
+# method values returns all the values:
+dic_val = list(inventory.values())
+print ("in order to see all values in a dicitonary I need to do list(inventory.values()): which gives"+ str(dic_val))
+
+# method items return a list with tuples including in each tuple a key-value pair
+dic_item = list(inventory.items() )
+print ("in order to see all key-value pairs in a dictionary I need to do list(inventory.items() ): which gives"+ str(dic_item))
+
+if 'mangos' in inventory:
+    print(inventory['bananas'])
+else:
+    print("We have no mangos")
+    
+# If I want to check i fa key exist the dictionary["keyname"] will produce an error
+# We can do it with get method which gives a none if the key doesn't exist and continues
+print("Asking for an existing value with inventory.get('bananas'): " + str(inventory.get('bananas')))    
+print("Asking for a non-existing value with inventory.get('mangos'): " + str(inventory.get('mangos')))    
+# If the value does not exis I can include a second argument in get to assign a values:
+print("Asking for a non-existing value with inventory.get('mangos',0): " + str(inventory.get('mangos',0)))    
+
+places = {"Australia":2000, "Greece":2004, "China":2008, "England":2012}
+places.get("Brazil",2016)
+places.update({"Brazil":2016})
+print("We can add a new key pair value with the update method.places.update({'Brazil':2016}): " +str(places))
+
+print("-------------------------------------------------------")
+#%% mutability of dictionaries:
+
+opposites = {'up': 'down', 'right': 'wrong', 'true': 'false'}
+alias = opposites # now alias refers to the same dictionary pbject as opposites
+
+print(alias is opposites) # is is valid also for dicitonaries to see if they refer to same object isinde python
+
+alias['right'] = 'left'
+print(opposites['right'])

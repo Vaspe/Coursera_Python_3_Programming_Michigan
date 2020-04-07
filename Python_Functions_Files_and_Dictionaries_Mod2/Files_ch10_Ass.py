@@ -81,7 +81,7 @@ for i in words3:
 
 #%%
 
-fid = open("Files/SP500.txt")
+fid = open("Files/SP500.txt","r")
 
 lines = fid.readlines()
 fid.close()
