@@ -38,7 +38,7 @@ for itup in gold.items():
 dic_list =list(gold.items())
 num_medals2 =[]
 for nam,num in dic_list:
-    num_medals2 = num_medals2 +[nam] 
+    num_medals2 = num_medals2 +[num] 
     
 
 
