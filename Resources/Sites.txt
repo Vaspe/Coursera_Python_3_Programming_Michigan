@@ -3,3 +3,13 @@ https://realpython.com/
 https://www.w3schools.com/python/
 
 https://docs.python.org/3.7/
+
+http://www.pythontutor.com/
+
+http://skulpt.org/
+
+http://www.openbookproject.net/thinkcs/python/english2e/  # How to Think Like a Computer Scientist book
+
+https://runestone.academy/runestone/books/published/thinkcspy/index.html # How to Think Like a Computer Scientist interactive
+
+https://github.com/RunestoneInteractive #runestone git hub!
