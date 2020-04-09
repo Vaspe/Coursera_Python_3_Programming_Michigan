@@ -78,6 +78,7 @@ ALWAYS IN CALLS OR DEFINITIONS:
 print("-----------------------------------------------------------")
 
 #%% LAMBDA EXPRESSIONS anonymous functions
+# doc:https://www.w3schools.com/python/python_lambda.asp
 def f(x):
     return x - 2
 
