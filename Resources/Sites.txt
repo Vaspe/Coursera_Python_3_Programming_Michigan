@@ -1,0 +1,5 @@
+https://realpython.com/
+
+https://www.w3schools.com/python/
+
+https://docs.python.org/3.7/
