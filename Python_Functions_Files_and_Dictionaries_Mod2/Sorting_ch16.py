@@ -65,6 +65,7 @@ L7 = [1, 7, 4, -2, 3]
 
 print("---------------------------------------------------------")
 # key defines a custom function applied during the sorting like e.g. the absolute
+# IMPRTANT: . The key function passed  must always take just one parameter!!!!
 def absolute(x):
     if x >= 0:
         return x
@@ -103,6 +104,83 @@ last_char2 = lambda str1:str1[-1]
 nums_sorted_lambda2 = sorted(nums,key = last_char2, reverse = True)
 # or equally
 nums_sorted_lambda3 = sorted(nums,key = (lambda str1:str1[-1]), reverse = True)
+print("---------------------------------------------------------")
 
-#%%
+#%% sorting dictionaries
+# by default it sort based on the keys:
+L = ['E', 'F', 'B', 'A', 'D', 'I', 'I', 'C', 'B', 'A', 'D', 'D', 'E', 'D']
 
+d = {}
+for x in L:
+    if x in d:
+        d[x] = d[x] + 1
+    else:
+        d[x] = 1
+y = sorted(d.keys())
+for k in y:
+    print("{} appears {} times".format(k, d[k]))
+y1 = sorted(d)
+print(y)
+print(y1)
+
+
+# if we want to sprt based on other property of the key like its value or a part
+# of it we have to define a key function in the sorted. Usually done as a lambda
+# anonymoys function
+
+y2 = sorted(d, key=lambda k: d[k], reverse=True)
+for k in y2:
+    print("{} appears {} times".format(k, d[k]))
+print(y2)
+print("---------------------------------------------------------")    
+
+#%% small exercise!
+dictionary = {"Flowers": 10, 'Trees': 20, 'Chairs': 6, "Firepit": 1, 'Grill': 2, 'Lights': 14}
+
+sorted_values = sorted(dictionary,key = lambda x:dictionary[x], reverse=True)
+
+#%% Second order sorting or what happens when two values are the same in a sorting sequence
+# By defautl python will retutn them in the ordr encountered if no second layer exists
+# for a list of tuples it will go to the next element of the tuplkes to do the second order soring 
+tups = [('A', 3, 2),
+        ('C', 1, 4),
+        ('B', 3, 1),
+        ('A', 2, 4),
+        ('C', 1, 2),
+       ('B', 3, 1,8)]
+for tup in sorted(tups):
+    print(tup)
+print("---------------------------------------------------------")    
+
+# we can also define the prder our selves:
+fruits = ['peach', 'kiwi', 'apple', 'blueberry', 'papaya', 'mango', 'pear']
+new_order = sorted(fruits, key=lambda fruit_name: (len(fruit_name), fruit_name))
+for fruit in fruits:
+    print(fruit)
+print("---------------------------------------------------------")    
+for fruit in new_order:
+    print(fruit)
+print("---------------------------------------------------------")    
+
+# to change the order of the first order sort but keepo the second we can 
+# do a trick of chnaging the sign of the numerical values that are sorted so now 
+# we have reverse numerical sorting and regulkar alphabetic sorting:
+fruits = ['peach', 'kiwi', 'apple', 'blueberry', 'papaya', 'mango', 'pear']
+new_order = sorted(fruits, key=lambda fruit_name: (-len(fruit_name), fruit_name))
+for fruit in new_order:
+    print(fruit)    
+print("---------------------------------------------------------")    
+ 
+#%% when anonymous function is too much!
+def s_cities_count(city_list):
+    ct = 0
+    for city in city_list:
+        if city[0] == "S":
+            ct += 1
+    return ct
+
+states = {"Minnesota": ["St. Paul", "Minneapolis", "Saint Cloud", "Stillwater"],
+          "Michigan": ["Ann Arbor", "Traverse City", "Lansing", "Kalamazoo"],
+          "Washington": ["Seattle", "Tacoma", "Olympia", "Vancouver"]}
+
+print(sorted(states, key=lambda state: s_cities_count(states[state])))
