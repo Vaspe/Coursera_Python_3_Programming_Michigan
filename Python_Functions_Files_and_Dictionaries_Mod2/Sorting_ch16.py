@@ -98,6 +98,11 @@ def last_char(str1):
 nums_sorted = sorted(nums,key = last_char, reverse = True)
 print(nums)
 print(nums_sorted)
+# same with lambda funcyion
+last_char2 = lambda str1:str1[-1]
+nums_sorted_lambda2 = sorted(nums,key = last_char2, reverse = True)
+# or equally
+nums_sorted_lambda3 = sorted(nums,key = (lambda str1:str1[-1]), reverse = True)
 
 #%%
 
