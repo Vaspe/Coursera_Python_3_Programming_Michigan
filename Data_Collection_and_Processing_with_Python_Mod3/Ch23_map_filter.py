@@ -5,8 +5,11 @@ Created on Fri Apr 10 16:09:31 2020
 @author: Vasilis
 map documentation:
     https://www.w3schools.com/python/ref_func_map.asp
+    map(<function>, <iterable(s)>)
+    
 filter documnetation:
     https://www.w3schools.com/python/ref_func_filter.asp  
+    filter(<function that gives True or False,<iterable>)
 
 Remeber that they both return iterable and not list. We need to convert to list if required!    
 """
