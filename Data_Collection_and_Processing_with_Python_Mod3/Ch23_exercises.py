@@ -188,8 +188,13 @@ tester = {'info': [
          {'name': 'Gladys', 'class standing': 'Sophomore', 'major': 'History', 'important classes': ['ENGLISH 125', 'HIST 259', 'ENGLISH 130']},
          {'name': 'Adam', 'major': 'Violin Performance', 'class standing': 'Senior', 'important classes': ['PIANO 101', 'STUDIO 300', 'THEORY 229', 'MUSC 356']}]}
 
-class_sched  = [iDic['important classes']  for iDic in tester['info'] ]
-class_sched  = [x for iDic in tester['info'] for x in iDic if x=='names' ]
+#class_sched  = [iDic['important classes']  for iDic in tester['info'] ]
+#class_sched  = [x for iDic in tester['info'] for x in iDic if x=='names' ]
+class_sched = [x for iDic in tester['info'] for x in iDic]
+#for iDic in tester['info'] :
+#    print(iDic['important classes'])
+class_sched = [x for iDic in tester['info'] for x in iDic['important classes'] ]
+
 print(class_sched)
 print('-------------------------')
 #%% Ex 20
