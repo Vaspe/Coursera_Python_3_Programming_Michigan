@@ -78,3 +78,31 @@ for photo in photos:
 #    webbrowser.open(url)
 
 print('-----------------')
+
+#%% Non-english characters
+print('χψζωνβψωισγφω')
+print('-----------------')
+
+'''
+When we fetch a webpage that is in json format, the webpage will have a header 
+called ‘content-type’ that will say something like application/json; charset=utf8. 
+If it specifies the utf8 character set in that way, the requests module will 
+automatically decode the contents into unicode: requests.get('that web page').text 
+will yield a string, with each of those sequences of one to four bytes coverted 
+into a single character.
+
+If, for some reason, you get json-formatted text that is utf-encoded but the requests
+module hasn’t magically decoded it for you, the json.loads() function call can 
+take care of the decoding for you. loads() takes an optional parameter, encoding. 
+E.g.: encoding='utf-8' is the defautl kwarg 
+
+When we want to wtite to a file or to command windowthere can be a problem as the
+default is ascii. One solution is to use the Python method to encode the string,
+using a format such as utf-8. For example, s.encode('utf-8') will encode string
+s as utf-8. That will encode non-ASCII characters with multiple character sequences 
+that are difficult for people to read but can decoded back into single Unicode characters.
+
+Another quick-and-dirty option, if you just have a few stray characters that are
+getting in your way, is to replace any non-ASCII characters with question marks.
+For example, s.encode('ascii', 'replace').
+'''
