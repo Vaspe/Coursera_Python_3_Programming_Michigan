@@ -19,3 +19,7 @@ https://github.com/RunestoneInteractive #runestone git hub!
 http://runestoneinteractive.org/pages/library.html
 
 https://www.datamuse.com/api/ # good  example API to practive retrievieng info from APIs on the internet
+
+https://icanhazdadjoke.com/api # dad jokes api
+
+https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/ # itunes api real

@@ -105,7 +105,7 @@ res.url
 res.headers
 """
 # it's not found in the permanent cache
-res = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=happy", permanent_cache_file="Files/datamuse_cache.txt")
+res = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=puppy", permanent_cache_file="Files/datamuse_cache.txt")
 print(res.text[:100])
 print("------")
 # this time it will be found in the temporary cache
