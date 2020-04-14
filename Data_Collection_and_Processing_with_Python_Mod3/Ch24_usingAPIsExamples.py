@@ -11,7 +11,6 @@ import json
 import webbrowser
 
 
-
 #%% itunes api
 
 base_itune = 'https://itunes.apple.com/search'
@@ -26,10 +25,21 @@ print(iTunes_response2.url)
 print('-----------------')
 for r in py_data['results']:
     print(r['trackName'])
-    
+print('-----------------')
+def fet_itunes_data(s_term, entity ="podcast" ):
+    base_itune = 'https://itunes.apple.com/search'
+    term = s_term
+    params_dic_itune = {}
+    params_dic_itune['terms'] =  term
+    params_dic_itune['terms'] =  entity
+    iTunes_res = requests.get(base_itune, params = parameters)
+    print (iTunes_res.url)
+    return iTunes_res.json()
+        
+test_itune_Ann = fet_itunes_data("Ann Arbor",'podcast')
+print('-----------------')
 
 #%% flickr api
-
 
 # apply for a flickr authentication key at http://www.flickr.com/services/apps/create/apply/?
 # paste the key (not the secret) as the value of the variable flickr_key
@@ -54,7 +64,9 @@ def get_flickr_data(tags_string):
     return flickr_resp.json()
 
 result_river_mts = get_flickr_data("river,mountains")
+print('-----------------')
 
+# post processing
 # Some code to open up a few photos that are tagged with the mountains and river tags...
 
 photos = result_river_mts['photos']['photo']
@@ -63,4 +75,6 @@ for photo in photos:
     photo_id = photo['id']
     url = 'https://www.flickr.com/photos/{}/{}'.format(owner, photo_id)
     print(url)
-    webbrowser.open(url)
+#    webbrowser.open(url)
+
+print('-----------------')
