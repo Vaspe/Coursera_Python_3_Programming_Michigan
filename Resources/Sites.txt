@@ -26,4 +26,8 @@ https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-serv
 
 https://www.flickr.com/services/api/  # flickr api
 
+https://tastedive.com/read/api  # tastedive movies api
+
+https://www.omdbapi.com/ 
+
 https://www.py4e.com/book  # python 4 everybody
