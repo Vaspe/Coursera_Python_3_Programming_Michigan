@@ -62,7 +62,7 @@ def get(baseurl, params={}, private_keys_to_ignore=["api_key"], permanent_cache_
         print("found in temp_cache")
         the_response = requests.Response()
         the_response.url = full_url
-        the_response.headers = temp_cache[cache_key]
+        the_response._content = temp_cache[cache_key]
         # make a Response object containing text from the change, and the full_url that would have been fetched
         return the_response
     elif cache_key in permanent_cache:
@@ -70,7 +70,7 @@ def get(baseurl, params={}, private_keys_to_ignore=["api_key"], permanent_cache_
         
         the_response = requests.Response()
         the_response.url = full_url
-        the_response.headers = permanent_cache[cache_key]
+        the_response._content = permanent_cache[cache_key]
         # make a Response object containing text from the change, and the full_url that would have been fetched
         return the_response
     else:

@@ -1,0 +1,7 @@
+No name, it is a project for learning pyhton and interfacing APIs
+
+Key:
+a9e655842a66983c8f0bbb23ceae3bf2
+
+Secret:
+56c7171e799651a8

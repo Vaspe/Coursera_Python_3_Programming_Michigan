@@ -23,3 +23,5 @@ https://www.datamuse.com/api/ # good  example API to practive retrievieng info f
 https://icanhazdadjoke.com/api # dad jokes api
 
 https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/ # itunes api real
+
+https://www.flickr.com/services/api/  # flickr api
