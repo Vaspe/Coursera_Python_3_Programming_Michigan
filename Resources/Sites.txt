@@ -15,3 +15,5 @@ https://runestone.academy/runestone/books/published/thinkcspy/index.html # How t
 https://github.com/RunestoneInteractive #runestone git hub!
 
  https://jsoneditoronline.org/
+
+http://runestoneinteractive.org/pages/library.html
