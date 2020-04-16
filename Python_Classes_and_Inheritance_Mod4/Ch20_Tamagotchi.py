@@ -7,7 +7,6 @@ Created on Thu Apr 16 21:49:03 2020
 import random
 import copy
 
-
 class Pet:
     boredom_decrement = 4
     hunger_decrement = 6
@@ -31,11 +30,11 @@ class Pet:
 
     def clock_tick(self):
         self.boredom = self.boredom + 1
-        self.hunger =self.hunger + 1
+        self.hunger = self.hunger + 1
 
     def hi(self):
         self.reduce_boredom()
-        print(sounds[random.randrange(len(sounds))])
+        print(self.sounds[random.randrange(len(self.sounds))])
      
     def teach(self,word):
         self.sounds.append(word)
@@ -54,4 +53,59 @@ class Pet:
         state = "I'm {}. \nI feel {}.\n".format(self.name,self.mood())
         state = state + "Hunger {} Boredom {} Words {}".format(self.hunger, self.boredom, self.sounds)
         return state
+
+#%% Listenr loop to wrap arount the pet so that it is playable!
+
+def whichone(petlist, name):
+    for pet in petlist:
+        if pet.name == name:
+            return pet
+    return None # no pet matched      
+
+def play_Tamagotchi():
+    animals = []
+    option = ""
+    base_prompt = """
+        Quit
+        Adopt <petname_with_no_spaces_please>
+        Greet <petname>
+        Teach <petname> <word>
+        Feed <petname>
+        PetList 
+
+        Choice: """    
+    glob_err1 = "Wrong input. Please check your input again\n" 
+    feedback =""
+    while 1 == 1:
+        
+        action = input(feedback + '\n' + base_prompt)
+        feedback =""
+        words = action.split(" ")
+        if len(words)>0:
+            command = words[0]
+        else:
+            command = None    
+            
+        if command == 'Quit':
+            return 'Game ended'
+        elif command == 'Adopt':
+            if len(words) != 2:
+               feedback = feedback + glob_err1
+            else:
+                pet_name = whichone(animals,words[1])
+                if pet_name == None:
+                    animals.append(Pet(pet_name))
+                    print(words[1] + " added to your pet list") 
+                else:
+                    feedback = feedback + 'You already have a pet with the name {}.\n'.format(pet_name)
+                
+                
+                
+                
+                
+                
+                
+            
+
+#%% Testing our pet!
                 
