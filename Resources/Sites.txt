@@ -35,3 +35,5 @@ https://www.py4e.com/book  # python 4 everybody
 https://www.dj4e.com/  # django framework course
 
 https://tutorial.djangogirls.org/en/installation/ # good with general resoursec and getting started with django
+
+https://www.djangoproject.com/
