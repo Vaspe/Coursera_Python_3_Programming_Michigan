@@ -18,5 +18,5 @@ class Pet:
     def __init__ (self, name = 'Kitty',init_hunger = random.randrange(hunger_threshold) , init_boredom =random.randrange(boredom_threshold),init_sounds = copy.deepcopy(sounds)):
         self.name = name
         self.hunger = init_hunger
-        self.boredom = randrange(self.boredom_threshold)
+        self.boredom = init_boredom
         self.sounds = init_sounds 
