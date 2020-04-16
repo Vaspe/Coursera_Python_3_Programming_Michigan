@@ -57,10 +57,15 @@ class Pet:
 #%% Listenr loop to wrap arount the pet so that it is playable!
 
 def whichone(petlist, name):
-    for pet in petlist:
-        if pet.name == name:
-            return pet
-    return None # no pet matched      
+    if len(animals) == 0:
+        return None
+    else:    
+        for pet in petlist:
+            print(pet.name)
+            if pet.name == name:
+#                print('found')
+                return pet
+        return None # no pet matched      
 
 def play_Tamagotchi():
     animals = []
@@ -72,13 +77,13 @@ def play_Tamagotchi():
         Teach <petname> <word>
         Feed <petname>
         PetList 
-
+    
         Choice: """    
     glob_err1 = "Wrong input. Please check your input again\n" 
-    feedback =""
+    feedback ="\n"
     while 1 == 1:
-        
-        action = input(feedback + '\n' + base_prompt)
+        print(str(animals))
+        action = input('\n' + feedback + '\n' + base_prompt)
         feedback =""
         words = action.split(" ")
         if len(words)>0:
@@ -93,14 +98,16 @@ def play_Tamagotchi():
                feedback = feedback + glob_err1
             else:
                 pet_name = whichone(animals,words[1])
-                if pet_name == None:
-                    animals.append(Pet(pet_name))
-                    print(words[1] + " added to your pet list") 
+    #            print(pet_name)
+                if pet_name is None :
+                    animals.append(Pet(words[1]))
+                    feedback = feedback + words[1] + " added to your pet list\n"
+                    print(str(animals))
                 else:
-                    feedback = feedback + 'You already have a pet with the name {}.\n'.format(pet_name)
+                    feedback = feedback + 'You already have a pet with the name {}.\n'.format(words[1])
+                    
                 
-                
-                
+play_Tamagotchi()                
                 
                 
                 
