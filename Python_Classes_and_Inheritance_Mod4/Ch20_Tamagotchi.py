@@ -61,7 +61,7 @@ def whichone(petlist, name):
         return None
     else:    
         for pet in petlist:
-            print(pet.name)
+#            print(pet.name)
             if pet.name == name:
 #                print('found')
                 return pet
@@ -76,13 +76,16 @@ def play_Tamagotchi():
         Greet <petname>
         Teach <petname> <word>
         Feed <petname>
-        PetList 
+        PetList
+        CheckMood <petname>
+        Info <petname>
+        
     
         Choice: """    
     glob_err1 = "Wrong input. Please check your input again\n" 
     feedback ="\n"
     while 1 == 1:
-        print(str(animals))
+#        print(str(animals))
         action = input('\n' + feedback + '\n' + base_prompt)
         feedback =""
         words = action.split(" ")
@@ -102,11 +105,73 @@ def play_Tamagotchi():
                 if pet_name is None :
                     animals.append(Pet(words[1]))
                     feedback = feedback + words[1] + " added to your pet list\n"
-                    print(str(animals))
+#                    print(str(animals))
                 else:
                     feedback = feedback + 'You already have a pet with the name {}.\n'.format(words[1])
+        elif command == 'Greet':
+            if len(words) != 2:
+               feedback = feedback + glob_err1  
+            else:   
+                pet_name = whichone(animals,words[1])
+                if pet_name is None :
+                     feedback = feedback + words[1] + " is not in your pet list \n"
+                else:
+                    pet_name.hi()
+        elif command == 'Teach':
+            if len(words) != 3:
+               feedback = feedback + glob_err1  
+            else:   
+                pet_name = whichone(animals,words[1])
+                if pet_name is None :
+                     feedback = feedback + words[1] + " is not in your pet list \n"
+                else:
+                    if words[2] not in pet_name.sounds:
+                        pet_name.teach(words[2])
+                    else:
+                        feedback = feedback + words[1] + " already knows " + words[2]
+        elif command == 'Feed':
+            if len(words) != 2:
+               feedback = feedback + glob_err1  
+            else:   
+                pet_name = whichone(animals,words[1])
+                if pet_name is None :
+                     feedback = feedback + words[1] + " is not in your pet list \n"
+                else:
+                    pet_name.feed()            
+        elif command == 'PetList':
+            if len(words) != 1:
+                feedback = feedback + glob_err1  
+
+            else:
+                if len(animals) != 0:
+                    feedback = feedback + 'You have the following pets in your list: '  + str([x.name for x in animals])                
+                else:
+                    feedback = feedback + 'Your pet list is currently empty. You can adopt a pet!'
+        elif command == 'CheckMood':
+            if len(words) != 2:
+               feedback = feedback + glob_err1  
+            else:   
+                pet_name = whichone(animals,words[1])
+                if pet_name is None :
+                     feedback = feedback + words[1] + " is not in your pet list \n"
+                else:
+                    feedback = feedback +pet_name.name + ' is now ' + pet_name.mood()  
+        elif command == 'Info':
+            if len(words) != 2:
+               feedback = feedback + glob_err1  
+            else:   
+                pet_name = whichone(animals,words[1])
+                if pet_name is None :
+                     feedback = feedback + words[1] + " is not in your pet list \n"
+                else:
+                    feedback = feedback +pet_name.name + ' info is \n' + pet_name.__str__()  
+        else:
+            feedback = feedback + glob_err1  
+            
+        for ipet in animals:
+            ipet.clock_tick()
+#            feedback += "\n" + pet.__str__()                        
                     
-                
 play_Tamagotchi()                
                 
                 
