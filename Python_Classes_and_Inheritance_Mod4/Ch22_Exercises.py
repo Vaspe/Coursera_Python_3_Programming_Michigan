@@ -144,7 +144,7 @@ def whichtype(adopt_type="general pet"):
     return pet_types.get(adopt_type.lower(), Pet)
 
 #%%
-def play():
+def play(): 
     animals = []
 
     option = ""
