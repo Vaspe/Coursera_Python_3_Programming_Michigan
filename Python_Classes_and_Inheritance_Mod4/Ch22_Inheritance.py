@@ -130,10 +130,26 @@ class Bird(Pet):
 
     def hi(self):
         for i in range(self.chirp_number):
-            print(self.sounds[randrange(len(self.sounds))])
+            print(self.sounds[random.randrange(len(self.sounds))])
         self.reduce_boredom()
 
-        
+#%%
+class Lab(Dog):
+    def fetch(self):
+        return "I found the tennis ball!"
+
+    def hi(self):
+        print(self.fetch())
+        print(self.sounds[randrange(len(self.sounds))])
+
+#%%       
+class Poodle(Dog):
+    def dance(self):
+        return "Dancin' in circles like poodles do."
+
+    def hi(self):
+        print(self.dance())
+        Dog.hi(self)        
 #%% testin'
         
 b1 = Bird('tweety', 5)
