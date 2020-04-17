@@ -49,7 +49,7 @@ class Pet:
      
     def teach(self,word):
         self.sounds.append(word)
-        self.reduce_boredom
+        self.reduce_boredom()
         
     def feed(self):
         self.reduce_hunger()
@@ -65,7 +65,8 @@ class Pet:
         state = state + "Hunger {} Boredom {} Words {}".format(self.hunger, self.boredom, self.sounds)
         return state
 
-#%%
+#%% Class iand method inheritance. also aiverriding methods
+        
 """
 In the definition of the class Cat, we only need to define the things that are 
 different from the ones in the Pet class.
@@ -76,14 +77,68 @@ class Cat(Pet): # the class name that the new class inherits from goes in the pa
 
     def chasing_rats(self):
         return "What are you doing, Pinky? Taking over the world?!"
-
+    
+    # OVERWRITING THE METHOD!!!!
+    def mood(self):
+        if self.hunger > self.hunger_threshold:
+            return "hungry"
+        if self.boredom <2:
+            return "grumpy; leave me alone"
+        elif self.boredom > self.boredom_threshold:
+            return "bored"
+        elif random.randrange(2) == 0:
+            return "randomly annoyed"
+        else:
+            return "happy"
+        
+        
 #%% We can go multiple levels. Noew a new class will inherit from cat
 class Cheshire(Cat): # this inherits from Cat, which inherits from Pet
 
     def smile(self): # this method is specific to instances of Cheshire
         print(":D :D :D")
+
+#%%
+class Dog(Pet):
+    sounds = ['Woof', 'Ruff']
+
+    def mood(self):
+        if (self.hunger > self.hunger_threshold) and (self.boredom > self.boredom_threshold):
+            return "bored and hungry"
+        else:
+            return "happy"
+        
+    # invoking the parent method!    
+    def feed(self):
+        Pet.feed(self)
+        print("Arf! Thanks!")    
+    
+    # alternative method
+    def teach(self,word):
+        super().teach(word) # you dont repeat self with super
+        self.reduce_boredom()
+        print('Woof Wooof')
+        
+#%%
+
+class Bird(Pet):
+    sounds = ["chirp"]
+    def __init__(self, name="Kitty", chirp_number=2):
+        Pet.__init__(self, name) # call the parent class's constructor
+        # basically, call the SUPER -- the parent version -- of the constructor, with all the parameters that it needs.
+        self.chirp_number = chirp_number # now, also assign the new instance variable
+
+    def hi(self):
+        for i in range(self.chirp_number):
+            print(self.sounds[randrange(len(self.sounds))])
+        self.reduce_boredom()
+
         
 #%% testin'
+        
+b1 = Bird('tweety', 5)
+b1.teach("Polly wanna cracker")
+b1.hi()        
 p1 = Pet("Fido")
 print(p1) # we've seen this stuff before!
 
@@ -123,3 +178,6 @@ p1 = Pet("Teddy")
 p1.hi() # just the regular Pet hello
 #p1.chasing_rats() # This will give you an error -- this method doesn't exist on instances of the Pet class.
 #p1.smile() # This will give you an error, too. This method does not exist on instances of the Pet class.
+d1 = Dog("Astro")
+
+d1.teach('Arghhhh')
