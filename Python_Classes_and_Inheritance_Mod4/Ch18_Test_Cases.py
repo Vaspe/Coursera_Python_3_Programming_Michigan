@@ -34,11 +34,21 @@ for item in lst:
 
 lst2 = ['a', 'b', 'c', 17]
 first_type = type(lst2[0])
-for item in lst2:
-    assert type(item) == first_type
+#for item in lst2:
+#    assert type(item) == first_type
 
 #%% check length of a variable
 lst = ['a', 'b', 'c']
 
 assert len(lst) < 10    
+
+#%% function test
+
+def accumulator(lst):
+    accum = 0   
+    for w in lst:
+        accum = accum + w
+    return accum
     
+assert accumulator([1,2,3]) == 6    
+assert accumulator([]) == None   # gives 0 instead og the expected 0!!!!
