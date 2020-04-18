@@ -93,6 +93,9 @@ def getNumberBetween(prompt, min, max):
 
 #%% Define classes
 class WOFPlayer:
+    LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    VOWEL_COST = 250
+    VOWELS = 'AEIOU'
     
     def __init__ (self,init_name):
         self.name = init_name
@@ -124,11 +127,40 @@ class WOFHumanPlayer(WOFPlayer):
 class WOFComputerPlayer(WOFPlayer):
     
     SORTED_FREQUENCIES = 'ZQXJKVBPYGFWMUCLDRHSNIOATE'
-    
+    LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    VOWEL_COST = 250
     def __init__ (self,init_name,difficulty):
         WOFPlayer.__init__(self, init_name)
         self.difficulty = difficulty
-        
+      
+    def smartCoinFlip(self):
+        number_r = random.randint(1, 10)
+        if number_r > self.difficulty:
+            return True
+        else:
+            return False
+       
+    def getPossibleLetters(self,guessed):
+        let_lst = [char for char in LETTERS]
+        out_lst = [x for x in let_lst if (x in LETTERS and x not in guessed)]
+        if not out_lst:
+            out_lst = []
+        return out_lst
+    
+    def getMove(self,category, obscuredPhrase, guessed):
+        if not self.getPossibleLetters(guessed) or all(elem in self.VOWELS for elem in self.getPossibleLetters(guessed) ):
+            return 'pass'
+        else:
+            if self.smartCoinFlip():
+                for char in self.SORTED_FREQUENCIES[::-1]:
+                    if char not in guessed:
+                        return char
+            else: 
+                    char2 = random.choice(self.getPossibleLetters(guessed))
+                    return char2
+                    
+                
+            
         
         
 
