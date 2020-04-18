@@ -24,7 +24,7 @@ def spinWheel():
     fid.close()    
     return random.choice(wheel)
 
-aa = spinWheel()
+# aa = spinWheel()
 
 def getRandomCategoryAndPhrase():  
     """
@@ -39,7 +39,7 @@ def getRandomCategoryAndPhrase():
         
         return (category, phrase.upper())
 
-bb = getRandomCategoryAndPhrase()
+# bb = getRandomCategoryAndPhrase()
 
 def obscurePhrase(phrase, guessed):
     """
@@ -57,16 +57,20 @@ def obscurePhrase(phrase, guessed):
             rv = rv+s
     return rv
 
-cc = obscurePhrase('murder and crime',['r','d'])
+# cc = obscurePhrase('murder and crime',['r','d'])
 
-#%%
 def showBoard(category, obscuredPhrase, guessed):
+    """
+    It returns a string representing the current state of the game
+    """
     return """
 Category: {}
 Phrase:   {}
 Guessed:  {}""".format(category, obscuredPhrase, ', '.join(sorted(guessed)))
 
-print (showBoard('Singer', "S__ S___n",['S']))
+# print (showBoard('Singer', "S__ S___n",['S']))
+
+
 #%% Define classes
 
 
