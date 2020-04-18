@@ -70,10 +70,67 @@ Guessed:  {}""".format(category, obscuredPhrase, ', '.join(sorted(guessed)))
 
 # print (showBoard('Singer', "S__ S___n",['S']))
 
+def getNumberBetween(prompt, min, max):
+    """
+    Asks the user for a number between min & max (inclusive)
+    Using a listener the input is checked for correctness
+    """
+    userinp = input(prompt) # ask the first time
+
+    while True:
+        try:
+            n = int(userinp) # try casting to an integer
+            if n < min:
+                errmessage = 'Must be at least {}'.format(min)
+            elif n > max:
+                errmessage = 'Must be at most {}'.format(max)
+            else:
+                return n
+        except ValueError: # The user didn't enter a number
+            errmessage = '{} is not a number.'.format(userinp)
+
+#ee = getNumberBetween('Testing getNumberBetween(). Enter a number between 1 and 10', 1, 10)
 
 #%% Define classes
+class WOFPlayer:
+    
+    def __init__ (self,init_name):
+        self.name = init_name
+        self.prizeMoney = 0
+        self.prizes -= []
+     
+    def addMoney(self,amt):  
+        self.prizeMoney = self.prizeMoney + amt
+    
+    def goBankrupt(self):
+        self.prizeMoney = 0
+    
+    def addPrize(self,prize):
+        self.prizes = self.prizes + [prize]
+    
+    def __str__(self):
+        return "{} (${})".format(self.name,self.prizeMoney)
+        
 
-
+class WOFHumanPlayer(WOFPlayer):
+    
+    def getMove(self,category, obscuredPhrase, guessed):
+        prompt = """
+        self.name
+        """.format(self.name, self.prizeMoney,category,obscuredPhrase,guessed)
+        userinp = input(prompt) # ask the first time
+        return userinp
+    
+class WOFComputerPlayer(WOFPlayer):
+    
+    SORTED_FREQUENCIES = 'ZQXJKVBPYGFWMUCLDRHSNIOATE'
+    
+    def __init__ (self,init_name,difficulty):
+        WOFPlayer.__init__(self, init_name)
+        self.difficulty = difficulty
+        
+        
+        
 
 
 #%% Time module example 
