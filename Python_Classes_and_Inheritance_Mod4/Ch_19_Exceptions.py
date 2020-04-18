@@ -17,7 +17,6 @@ except <ErrorType>:
 # the except part can takeeither a specifi exception(error class)
 # or we can define except Exception: which handel all tyoes of errors 
 
-
 try:
     items = ['a', 'b']
     third = items[2]
@@ -26,7 +25,6 @@ except Exception:
     print("got an error")
 
 print("continuing")
-
 
 try:
     x = 5
@@ -82,6 +80,30 @@ for num in nums:
     except Exception:
         plus_four.append('Error')
 
+#%% Ch 19.5 Ex 1
+blog_posts = [{'Photos': 3, 'Likes': 21, 'Comments': 2}, {'Likes': 13, 'Comments': 2, 'Shares': 1}, {'Photos': 5, 'Likes': 33, 'Comments': 8, 'Shares': 3}, {'Comments': 4, 'Shares': 2}, {'Photos': 8, 'Comments': 1, 'Shares': 1}, {'Photos': 3, 'Likes': 19, 'Comments': 3}]
 
+total_likes = 0
 
+for post in blog_posts:
+    try:
+        total_likes = total_likes + post['Likes']
+    except KeyError:
+        post['Likes'] = 0
+        
 
+#%% Ch 19.5 Ex 2
+food = ["chocolate", "chicken", "corn", "sandwich", "soup", "potatoes", "beef", "lox", "lemonade"]
+fifth = []
+
+for x in food:
+    try:
+        fifth.append(x[4])
+    except KeyError:
+        print("I got a key error")
+        pass    
+    except IndexError:
+        print("I got an index error")
+        pass
+
+# We can hace multiple excepts one after the other too!
