@@ -227,7 +227,7 @@ class WOFComputerPlayer(WOFPlayer):
 
 # ove = player.getMove('Places & People', '_____ _____ ____', LETTERS) # NO VALID GUESSES
 
-#%% Actual game
+#%% Actual game set up
 
 # GAME LOGIC CODE
 print('='*15)
@@ -268,6 +268,7 @@ playerIndex = 0
 winner = False
 
 
+#%% GAME LOOP!
 
 while True:
     player = players[playerIndex]
