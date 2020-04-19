@@ -192,15 +192,14 @@ class WOFComputerPlayer(WOFPlayer):
                     if char not in guessed and (char not in self.VOWELS and self.prizeMoney < self.VOWEL_COST) :
                         return char
             else: 
-                if self.prizeMoney >= self.VOWEL_COST):
+                if self.prizeMoney >= self.VOWEL_COST:
                     char2 = random.choice(self.getPossibleLetters(guessed))
                     return char2
                 else:
                     new_lst = [x for x in guess_let if x not in self.VOWELS]
                     char2 = random.choice(new_lst)
                     return char2
-                    char2 not in guessed and (char2 not in self.VOWELS and self.prizeMoney < self.VOWEL_COST) :
-                   
+                    
             
 #%%testin'
 
