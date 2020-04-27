@@ -347,6 +347,7 @@ if winner:
         print('{} also won:'.format(winner.name))
         for prize in winner.prizes:
             print('    - {}'.format(prize))
+    time.sleep(10)        
 else:
     print('Nobody won. The phrase was {}'.format(phrase))
 
