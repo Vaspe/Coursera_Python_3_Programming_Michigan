@@ -8,32 +8,48 @@ Created on Tue Apr 28 20:42:35 2020
 import PIL
 from PIL import Image
 from PIL import ImageEnhance
+from PIL import ImageDraw
+from PIL import ImageFont 
 
 # read image and convert to RGB
 image=Image.open("readonly/msi_recruitment.gif")
 image=image.convert('RGB')
 
-
+font1 = ImageFont.truetype("readonly/fanwood-webfont.ttf",50)
 images = []
 for factor in [0.1,0.5,0.9] :
     #get a copy of the image and its pixels to moidify for R
     cur_image = image.copy()
+    t1 = 'channel 0 intensity ' + str(factor)
+    draw = ImageDraw.Draw(cur_image)
+    draw.rectangle([0,410,800,450],fill='black')
+    draw.text((2,410),t1,font=font1, align ="left")
     pixels = cur_image.load()
     for iwidth in range(image.width):
         for iheight in range(image.height): 
-            pixels [iwidth,iheight]= (int(factor*pixels [iwidth,iheight][0]),pixels [iwidth,iheight][1],pixels [iwidth,iheight][2])
+            pixels [iwidth,iheight] = (int(factor*pixels [iwidth,iheight][0]),pixels [iwidth,iheight][1],pixels [iwidth,iheight][2])    
     # store the new modified image to the list
     images.append(cur_image)
+ 
     #get a copy of the image and its pixels to moidify for G
     cur_image = image.copy()
+    t1 = 'channel 1 intensity ' + str(factor)
+    draw = ImageDraw.Draw(cur_image)
+    draw.rectangle([0,410,800,450],fill='black')
+    draw.text((2,410),t1,font=font1, align ="left")
     pixels = cur_image.load()
     for iwidth in range(image.width):
         for iheight in range(image.height): 
             pixels [iwidth,iheight]= (pixels [iwidth,iheight][0],int(factor*pixels [iwidth,iheight][1]),pixels [iwidth,iheight][2])
     # store the new modified image to the list
     images.append(cur_image)
+    
     #get a copy of the image and its pixels to moidify for B
     cur_image = image.copy()
+    t1 = 'channel 2 intensity ' + str(factor)
+    draw = ImageDraw.Draw(cur_image)
+    draw.rectangle([0,410,800,450],fill='black')
+    draw.text((2,410),t1,font=font1, align ="left")    
     pixels = cur_image.load()
     for iwidth in range(image.width):
         for iheight in range(image.height): 
@@ -44,7 +60,6 @@ for factor in [0.1,0.5,0.9] :
 # for i in images:
 #     display(i)
     
-    
 
 # create a contact sheet from different brightnesses
 first_image=images[0]
@@ -52,16 +67,6 @@ contact_sheet=PIL.Image.new(first_image.mode, (first_image.width*3,first_image.h
 x=0
 y=0
 
-# for img in images:
-#     # Lets paste the current image into the contact sheet
-#     contact_sheet.paste(img, (x, y) )
-#     # Now we update our X position. If it is going to be the width of the image, then we set it to 0
-#     # and update Y as well to point to the next "line" of the contact sheet.
-#     if x+first_image.width == contact_sheet.width:
-#         x=0
-#         y=y+first_image.height
-#     else:
-#         x=x+first_image.width
 for img in images:
     # Lets paste the current image into the contact sheet
     contact_sheet.paste(img, (x, y) )
