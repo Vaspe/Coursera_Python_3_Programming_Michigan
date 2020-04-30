@@ -122,5 +122,6 @@ show_rects(faces)
 faces = face_cascade.detectMultiScale(cv_img,1.25)
 show_rects(faces)
 
+# Timit is like tic toc but more advanced!
 %timeit face_cascade.detectMultiScale(cv_img,1.05)
 %timeit face_cascade.detectMultiScale(cv_img,1.15)
