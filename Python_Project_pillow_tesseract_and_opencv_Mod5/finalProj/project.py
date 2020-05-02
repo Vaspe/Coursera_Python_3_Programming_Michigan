@@ -3,10 +3,29 @@
 Created on Fri May  1 00:39:29 2020
 
 @author: Vasilis
+
+The assignment grading is very simple, if you create something that looks like the
+two sample outputs (searching for "Chris" in the small images and "Mark" in the
+large images) you get full points! If you fail to handle the case where some pages
+have the text but no faces (with the Mark search) you can still pass the assignment,
+but I know you can do better!
+ 
+Wworkaround to post the final project's source code for grading, while Coursera 
+is fixing that weird textbox which messes up formatting and makes it unreadable 
+and unrunnable.
+
+If you first double each end-of-line (i.e. make CRLF (\r\n) to be CRLFCRLF (\r\n\r\n)) 
+and then paste the result to that text box and save - the formatting is retained.
+Looks a bit weird (longer than it should be), but the code is readable and can
+be copy-pasted to .py file or Jupiter for running. 
+
+Course material here:
+    https://drive.google.com/file/d/1gzySVKYpc6UtxXNhzcW6i11wtRoq_iNq/view
 """
 
 import zipfile
 
+import PIL
 from PIL import Image
 import pytesseract
 import cv2 as cv
@@ -45,6 +64,7 @@ for i in fl_names:
 
 #%% make a collage with the text and all the faces in a  contact shit
 
+# PIL.Image.thumbnail 
 
 
 #%% Rest stuff not used
