@@ -24,9 +24,10 @@ Course material here:
 """
 
 import zipfile
-import io
-import PIL
+# import io
+# import PIL
 from PIL import Image
+from PIL import ImageDraw
 import pytesseract
 import cv2 as cv
 import numpy as np
@@ -55,75 +56,32 @@ fl_names = myzip.namelist()
 #Creating a dictionary wtih keys the image names and values a li st with first element the image object itself
 img_dict = {}
 images_arr = []
+size = 128, 128
 for i in fl_names:
     img_dict[i] = [Image.open(BytesIO(myzip.read(i)))]
     img_dict[i] = img_dict[i] + [np.asarray(img_dict[i][0])]
-    # display(img_dict[i][0])
-    # images_arr = images_arr + [np.asarray.img_dict[i][0]]
-    # img_dict[i] = [np.asarray(Image.open(myzip.read(i)))]
-    #display(Image.open(BytesIO(myzip.read(i))))
-    # images_arr  = np.asarray(Image.open(BytesIO(myzip.read(i)))) 
-myzip.close()
- 
-# display(Image.fromarray(img_dict[i],"L"))
-#display(Image.open(BytesIO(myzip.read(fl_names[0]))))
-
-#%% Get the text of each page and add it to the dictionary 
-for i in img_dict:
-    img_dict[i] = img_dict[i] + [pytesseract.image_to_string(img_dict[i][0])]
-
-#Image.open()
-
-#%% Get the pictures/faces of each page and add them to the dictionary
-
-cc = cv.cvtColor(img_dict[i][1],cv.COLOR_BGR2HSV)
-
-# data1 = np.asarray(img_dict[i][0])
-# data = img_dict[i][0]
-# img = cv.imdecode(np.frombuffer(data, np.uint8), 1)    
-
-# bytes_io = io.BytesIO(img_dict[i][1])
-
-# pil_img = Image.open(img_dict[i][0])
-# rgb = img.convert('rgb')
-# # now lets convert it to greyscale for opencv, and get the bytestream
-# open_cv_version = pil_img.convert("L")
-
-
-
-# # now read this file with opencv and get faces
-# cv_img = cv.imread(pil_img)
-
-# img = cv.imread(img_dict[i][0])
-# gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-
-# # using the face cascade we loaded to detect a face in the greayed pic. the output is a box in the form x,y,x,y of UL,LR corners in an ndarray
-# faces = face_cascade.detectMultiScale(gray)
-
-
-#%% Chack in which images the text appears
-
-
-#%% make a collage with the text and all the faces in a  contact shit
-
-# PIL.Image.thumbnail 
-
-
-#%% Rest stuff not used
-
-# t = time.time()
-# elapsed = time.time() - t
-# print(elapsed)
+    #display(img_dict[i][0])    
     
-# for i in info_list:
-#     print (i.orig_filename)
-#     im_file = myzip.read(i.orig_filename)
-#     cur_img = Image.open(BytesIO(im_file) )
-    # display(cur_img)
-    # Image.open(im_file)
+    # get the text of each page
+    img_dict[i] = img_dict[i] + [pytesseract.image_to_string(img_dict[i][0])]
+    
+    #find the faces,crop them,  and store them in a list
+    cv_im = cv.cvtColor(img_dict[i][1],cv.COLOR_BGR2HSV)
+    faces = face_cascade.detectMultiScale(cv_im,1.2,4)
+    small_faces = []
+    pil_img = img_dict[i][0]
+    for x,y,w,h in faces:
+        cur_im = pil_img.copy()
+        #crop the face
+        aa = cur_im.crop((x,y,x+w,y+h))
+        # resize cropped to 128x128
+        aa.thumbnail(size)
+        # display(aa)
+        #add to the list of faces
+        small_faces = small_faces + [aa]
+    img_dict[i] =img_dict[i] + [small_faces]
+myzip.close()
 
-# cc = myzip.getinfo('a-0.png')
-# data1 = myzip.read('a-0.png')
-# aa = zipfile.ZipInfo(filename=zip_name)
-
-
+# for i in img_dict['a-0.png'][3]:
+#     display(i)
+    
