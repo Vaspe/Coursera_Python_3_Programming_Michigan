@@ -93,21 +93,21 @@ img_dict = get_imdict(zip_name)
 wrd = 'Christopher'
 
 # create a contact sheet from different brightnesses
-first_image=images[0]
-contact_sheet=PIL.Image.new(first_image.mode, (first_image.width*3,first_image.height*3))
-x=0
-y=0
+# first_image=images[0]
+# contact_sheet=PIL.Image.new(first_image.mode, (first_image.width*3,first_image.height*3))
+# x=0
+# y=0
 
-for img in images:
-    # Lets paste the current image into the contact sheet
-    contact_sheet.paste(img, (x, y) )
-    # Now we update our X position. If it is going to be the width of the image, then we set it to 0
-    # and update Y as well to point to the next "line" of the contact sheet.
-    if y+first_image.height == contact_sheet.height:
-        x=x+first_image.width
-        y=0
-    else:
-        y=y+first_image.height        
+# for img in images:
+#     # Lets paste the current image into the contact sheet
+#     contact_sheet.paste(img, (x, y) )
+#     # Now we update our X position. If it is going to be the width of the image, then we set it to 0
+#     # and update Y as well to point to the next "line" of the contact sheet.
+#     if y+first_image.height == contact_sheet.height:
+#         x=x+first_image.width
+#         y=0
+#     else:
+#         y=y+first_image.height        
 
 
 # for i in img_dict['a-0.png'][3]:
