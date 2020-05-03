@@ -27,7 +27,7 @@ import zipfile
 # import io
 # import PIL
 from PIL import Image
-from PIL import ImageDraw
+#from PIL import ImageDraw
 import pytesseract
 import cv2 as cv
 import numpy as np
@@ -35,13 +35,9 @@ from io import BytesIO
 # import time 
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
 #%%
-
-#Define the zip file name with the pngs
-# zip_name = "D:/Github/small_img.zip"
-# zip_name = "D:/Github/images.zip"
-
-def get_imdict(zip_name):
+def get_imdict(zip_name,scaleF = 1.2,minNghb = 3):
     # loading the face detection classifier
     face_cascade = cv.CascadeClassifier('readonly/haarcascade_frontalface_default.xml')
     
@@ -55,7 +51,7 @@ def get_imdict(zip_name):
     #Taking all the file names in the zip 
     fl_names = myzip.namelist()
     
-    #Creating a dictionary wtih keys the image names and values a li st with first element the image object itself
+    #Creating a dictionary wtih keys the image names and values a list with first element the image object itself
     img_dict = {}
     size = 128, 128
     for i in fl_names:
@@ -63,12 +59,12 @@ def get_imdict(zip_name):
         img_dict[i] = img_dict[i] + [np.asarray(img_dict[i][0])]
         #display(img_dict[i][0])    
         
-        # get the text of each page
+        # get the text of each page and add it to the list
         img_dict[i] = img_dict[i] + [pytesseract.image_to_string(img_dict[i][0])]
         
         #find the faces,crop them,  and store them in a list
         cv_im = cv.cvtColor(img_dict[i][1],cv.COLOR_BGR2HSV)
-        faces = face_cascade.detectMultiScale(cv_im,1.2,4)
+        faces = face_cascade.detectMultiScale(cv_im,scaleF,minNghb)
         small_faces = []
         pil_img = img_dict[i][0]
         for x,y,w,h in faces:
@@ -116,14 +112,14 @@ def get_data_from_zip(img_dict,wrd):
             else:
                 print('But there were no faces in that file')        
         else:
-            print('No results found in ' + i)
+            print('No results found in file ' + i)
             continue
 
 #%%   Execution 
   
-zip_name = "D:/Github/images.zip"
-img_dict = get_imdict(zip_name)
-wrd = 'Mark'  
+zip_name = "D:/Github/small_img.zip"
+img_dict = get_imdict(zip_name,scaleF = 1.35,minNghb = 4)
+wrd = 'Christopher'  
 get_data_from_zip(img_dict,wrd)
 
 # for i in img_dict['a-0.png'][3]:
