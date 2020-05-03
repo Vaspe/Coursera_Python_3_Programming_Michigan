@@ -38,7 +38,7 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tessera
 #%%
 
 #Define the zip file name with the pngs
-zip_name = "D:/Github/small_img.zip"
+# zip_name = "D:/Github/small_img.zip"
 # zip_name = "D:/Github/images.zip"
 
 def get_imdict(zip_name):
@@ -81,24 +81,50 @@ def get_imdict(zip_name):
             # display(aa)
             #add to the list of faces
             small_faces = small_faces + [aa]
-        img_dict[i] =img_dict[i] + [small_faces]
-    myzip.close()
-    
-
+        img_dict[i] = img_dict[i] + [small_faces]
+        
+        # create the contact sheet
+        first_image = small_faces[0]
+        contact_sheet = Image.new(first_image.mode, (128*5,128*2))
+        x = 0
+        y = 0       
+        for img in small_faces:
+            # Lets paste the current image into the contact sheet
+            contact_sheet.paste(img, (x, y) )
+            # Now we update our X position. If it is going to be the width of the image, then we set it to 0
+            # and update Y as well to point to the next "line" of the contact sheet.
+            if x + 128 == contact_sheet.width:
+                x = 0
+                y = y + 128
+            else:
+                x = x + 128
+                 
+            myzip.close()
+        img_dict[i] = img_dict[i] + [contact_sheet]
     return img_dict     
 
 #%% logic:
 
-img_dict = get_imdict(zip_name)
-wrd = 'Christopher'
 
-# create a contact sheet from different brightnesses
-# first_image=images[0]
-# contact_sheet=PIL.Image.new(first_image.mode, (first_image.width*3,first_image.height*3))
+#create a contact shit with small faces
+# small_faces =img_dict['a-0.png'][3] 
+# first_image = small_faces[0]
+# contact_sheet = Image.new(first_image.mode, (128*5,128*2))
 # x=0
 # y=0
 
-# for img in images:
+# for img in small_faces:
+#     # Lets paste the current image into the contact sheet
+#     contact_sheet.paste(img, (x, y) )
+#     # Now we update our X position. If it is going to be the width of the image, then we set it to 0
+#     # and update Y as well to point to the next "line" of the contact sheet.
+#     if x + 128 == contact_sheet.width:
+#         x = 0
+#         y = y+128
+#     else:
+#         x = x+128
+# display(contact_sheet)
+# for img in small_faces:
 #     # Lets paste the current image into the contact sheet
 #     contact_sheet.paste(img, (x, y) )
 #     # Now we update our X position. If it is going to be the width of the image, then we set it to 0
@@ -109,24 +135,28 @@ wrd = 'Christopher'
 #     else:
 #         y=y+first_image.height        
 
+# contact_sheet = contact_sheet.resize((int(contact_sheet.width/2),int(contact_sheet.height/2) ))
+
+
 
 # for i in img_dict['a-0.png'][3]:
 #     display(i)
-
-for i in  img_dict:
-    # check for word in the text
-    if wrd in img_dict[i][2]:
-        print('Results found in ' + i)
-        if img_dict[i][3]:
-            for ii in img_dict['a-0.png'][3]:
-                display(ii)
+def get_data_from_zip(zip_name,wrd):
+    img_dict = get_imdict(zip_name)    
+    for i in  img_dict:
+        # check for word in the text
+        if wrd in img_dict[i][2]:
+            print('Results found in ' + i)
+            if img_dict[i][3]:
+                display(imgdict[i][3])
+            else:
+                print('But there were no faces in that file')        
         else:
-            print('But there were no faces in that file')        
-    else:
-        print('No results found in ' + i)
-        continue
+            print('No results found in ' + i)
+            continue
     
-    
-
+wrd = 'Christopher'    
+zip_name = "D:/Github/small_img.zip"
+get_data_from_zip(zip_name,wrd)
 
 
