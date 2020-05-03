@@ -82,25 +82,28 @@ def get_imdict(zip_name):
             #add to the list of faces
             small_faces = small_faces + [aa]
         img_dict[i] = img_dict[i] + [small_faces]
-        
-        # create the contact sheet
-        first_image = small_faces[0]
-        contact_sheet = Image.new(first_image.mode, (128*5,128*2))
-        x = 0
-        y = 0       
-        for img in small_faces:
-            # Lets paste the current image into the contact sheet
-            contact_sheet.paste(img, (x, y) )
-            # Now we update our X position. If it is going to be the width of the image, then we set it to 0
-            # and update Y as well to point to the next "line" of the contact sheet.
-            if x + 128 == contact_sheet.width:
-                x = 0
-                y = y + 128
-            else:
-                x = x + 128
-                 
-            myzip.close()
-        img_dict[i] = img_dict[i] + [contact_sheet]
+        if small_faces:
+            # create the contact sheet
+            first_image = small_faces[0]
+            contact_sheet = Image.new(first_image.mode, (128*5,128*2))
+            x = 0
+            y = 0       
+            for img in small_faces:
+                # Lets paste the current image into the contact sheet
+                contact_sheet.paste(img, (x, y) )
+                # Now we update our X position. If it is going to be the width of the image, then we set it to 0
+                # and update Y as well to point to the next "line" of the contact sheet.
+                if x + 128 == contact_sheet.width:
+                    x = 0
+                    y = y + 128
+                else:
+                    x = x + 128                           
+            img_dict[i] = img_dict[i] + [contact_sheet]
+        else:
+            contact_sheet = []
+            img_dict[i] = img_dict[i] + [contact_sheet]
+             
+    myzip.close()
     return img_dict     
 
 #%% logic:
@@ -137,8 +140,6 @@ def get_imdict(zip_name):
 
 # contact_sheet = contact_sheet.resize((int(contact_sheet.width/2),int(contact_sheet.height/2) ))
 
-
-
 # for i in img_dict['a-0.png'][3]:
 #     display(i)
 def get_data_from_zip(zip_name,wrd):
@@ -148,14 +149,15 @@ def get_data_from_zip(zip_name,wrd):
         if wrd in img_dict[i][2]:
             print('Results found in ' + i)
             if img_dict[i][3]:
-                display(imgdict[i][3])
+                display(img_dict[i][4])
             else:
                 print('But there were no faces in that file')        
         else:
             print('No results found in ' + i)
             continue
-    
-wrd = 'Christopher'    
+
+#%%    
+wrd = 'pizza'    
 zip_name = "D:/Github/small_img.zip"
 get_data_from_zip(zip_name,wrd)
 
