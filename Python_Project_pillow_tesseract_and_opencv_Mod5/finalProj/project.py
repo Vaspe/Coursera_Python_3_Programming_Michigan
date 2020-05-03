@@ -57,7 +57,6 @@ def get_imdict(zip_name):
     
     #Creating a dictionary wtih keys the image names and values a li st with first element the image object itself
     img_dict = {}
-    images_arr = []
     size = 128, 128
     for i in fl_names:
         img_dict[i] = [Image.open(BytesIO(myzip.read(i)))]
@@ -76,7 +75,7 @@ def get_imdict(zip_name):
             cur_im = pil_img.copy()
             #crop the face
             aa = cur_im.crop((x,y,x+w,y+h))
-            # resize cropped to 128x128
+            # resize cropped to 128x128 pixels
             aa.thumbnail(size)
             # display(aa)
             #add to the list of faces
@@ -106,44 +105,8 @@ def get_imdict(zip_name):
     myzip.close()
     return img_dict     
 
-#%% logic:
-
-
-#create a contact shit with small faces
-# small_faces =img_dict['a-0.png'][3] 
-# first_image = small_faces[0]
-# contact_sheet = Image.new(first_image.mode, (128*5,128*2))
-# x=0
-# y=0
-
-# for img in small_faces:
-#     # Lets paste the current image into the contact sheet
-#     contact_sheet.paste(img, (x, y) )
-#     # Now we update our X position. If it is going to be the width of the image, then we set it to 0
-#     # and update Y as well to point to the next "line" of the contact sheet.
-#     if x + 128 == contact_sheet.width:
-#         x = 0
-#         y = y+128
-#     else:
-#         x = x+128
-# display(contact_sheet)
-# for img in small_faces:
-#     # Lets paste the current image into the contact sheet
-#     contact_sheet.paste(img, (x, y) )
-#     # Now we update our X position. If it is going to be the width of the image, then we set it to 0
-#     # and update Y as well to point to the next "line" of the contact sheet.
-#     if y+first_image.height == contact_sheet.height:
-#         x=x+first_image.width
-#         y=0
-#     else:
-#         y=y+first_image.height        
-
-# contact_sheet = contact_sheet.resize((int(contact_sheet.width/2),int(contact_sheet.height/2) ))
-
-# for i in img_dict['a-0.png'][3]:
-#     display(i)
-def get_data_from_zip(zip_name,wrd):
-    img_dict = get_imdict(zip_name)    
+#%% logic:  
+def get_data_from_zip(img_dict,wrd):   
     for i in  img_dict:
         # check for word in the text
         if wrd in img_dict[i][2]:
@@ -156,9 +119,13 @@ def get_data_from_zip(zip_name,wrd):
             print('No results found in ' + i)
             continue
 
-#%%    
-wrd = 'pizza'    
-zip_name = "D:/Github/small_img.zip"
-get_data_from_zip(zip_name,wrd)
+#%%   Execution 
+  
+zip_name = "D:/Github/images.zip"
+img_dict = get_imdict(zip_name)
+wrd = 'Mark'  
+get_data_from_zip(img_dict,wrd)
 
+# for i in img_dict['a-0.png'][3]:
+#     display(i)
 
